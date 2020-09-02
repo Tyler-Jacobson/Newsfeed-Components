@@ -86,6 +86,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Marketplace Expectations',
+    date: 'Jan 21st, 2020',
+    firstParagraph: `Lookout flogging bilge rat main sheet bilge water nipper fluke to go on account heave down clap of thunder. Reef sails six pounders skysail
+          code of conduct sloop cog Yellow Jack gunwalls grog blossom starboard. Swab black jack ahoy Brethren of the Coast 
+          schooner poop deck main sheet topmast furl marooned.`,
+
+    secondParagraph: `Lookout flogging bilge rat main sheet bilge water nipper fluke to go on account heave down clap of thunder. Reef sails six pounders skysail
+          code of conduct sloop cog Yellow Jack gunwalls grog blossom starboard. Swab black jack ahoy Brethren of the Coast 
+          schooner poop deck main sheet topmast furl marooned.`,
+
+    thirdParagraph: `Lookout flogging bilge rat main sheet bilge water nipper fluke to go on account heave down clap of thunder. Reef sails six pounders skysail
+          code of conduct sloop cog Yellow Jack gunwalls grog blossom starboard. Swab black jack ahoy Brethren of the Coast 
+          schooner poop deck main sheet topmast furl marooned.`
   }
 ];
 
@@ -116,10 +131,8 @@ const data = [
 */
 
 
-console.log(data[1].title)
-
-function articleMaker(article) {
-  const articleBody = document.createElement('div')
+function articleMaker(articleData) {
+  const article = document.createElement('div')
   const articleTitle = document.createElement('h2')
   const articleDate = document.createElement('p')
   const paragraphOne = document.createElement('p')
@@ -127,27 +140,37 @@ function articleMaker(article) {
   const paragraphThree = document.createElement('p')
   const expandButton = document.createElement('span')
 
-  articleBody.appendChild(articleTitle)
-  articleBody.appendChild(articleDate)
-  articleBody.appendChild(paragraphOne)
-  articleBody.appendChild(paragraphTwo)
-  articleBody.appendChild(paragraphThree)
-  articleBody.appendChild(expandButton)
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(expandButton)
 
-  articleBody.classList.add('article')
+  article.classList.add('article')
   articleDate.classList.add('date')
+  expandButton.classList.add('expandButton')
 
 
+  articleTitle.textContent = articleData.title
+  articleDate.textContent = articleData.date
+  paragraphOne.textContent = articleData.firstParagraph
+  paragraphTwo.textContent = articleData.secondParagraph
+  paragraphThree.textContent = articleData.thirdParagraph
+  expandButton.textContent = '+'
 
-  articleTitle.textContent = article.title
-  articleDate.textContent = article.date
-  paragraphOne.textContent = article.firstParagraph
-  paragraphTwo.textContent = article.secondParagraph
-  paragraphThree.textContent = article.thirdParagraph
+  expandButton.addEventListener('click', function(event) {
+    article.classList.toggle('article-open')
+  })
 
-  
-
-  return articleBody
+  return article
 }
+
+const articlesDiv = document.querySelector('.articles')
+
+data.forEach(function(test){
+  const articleElement = articleMaker(test)
+  articlesDiv.appendChild(articleElement)
+})
 
 console.log(articleMaker(data[1]))
