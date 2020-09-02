@@ -115,3 +115,39 @@ const data = [
   Refresh the page to see the new article.
 */
 
+
+console.log(data[1].title)
+
+function articleMaker(article) {
+  const articleBody = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const paragraphOne = document.createElement('p')
+  const paragraphTwo = document.createElement('p')
+  const paragraphThree = document.createElement('p')
+  const expandButton = document.createElement('span')
+
+  articleBody.appendChild(articleTitle)
+  articleBody.appendChild(articleDate)
+  articleBody.appendChild(paragraphOne)
+  articleBody.appendChild(paragraphTwo)
+  articleBody.appendChild(paragraphThree)
+  articleBody.appendChild(expandButton)
+
+  articleBody.classList.add('article')
+  articleDate.classList.add('date')
+
+
+
+  articleTitle.textContent = article.title
+  articleDate.textContent = article.date
+  paragraphOne.textContent = article.firstParagraph
+  paragraphTwo.textContent = article.secondParagraph
+  paragraphThree.textContent = article.thirdParagraph
+
+  
+
+  return articleBody
+}
+
+console.log(articleMaker(data[1]))
